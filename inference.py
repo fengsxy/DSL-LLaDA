@@ -8,34 +8,52 @@ Usage:
 import torch
 import torch.nn.functional as F
 import math, os, argparse
+from functools import lru_cache
 from transformers import AutoTokenizer, AutoModelForCausalLM
 from safetensors.torch import load_file
 
 MASK_ID = 126336
+SDE_TOP_K = 512
 
 HF_MODELS = {
     'Beta1': 'liddlefish/DSL-LLaDA-Beta1',
     'Beta2': 'liddlefish/DSL-LLaDA-Beta2',
     'Highpass': 'liddlefish/DSL-LLaDA-Highpass',
 }
+LOCAL_MODEL_ROOT = os.environ.get('DSL_LLADA_MODEL_ROOT', '/data2/ylong030/models/dsl-llada')
+LOCAL_TOKENIZER_PATH = os.path.join(LOCAL_MODEL_ROOT, 'LLaDA-8B-Instruct-tokenizer')
+LOCAL_MODELS = {
+    'Beta1': os.path.join(LOCAL_MODEL_ROOT, 'DSL-LLaDA-Beta1'),
+    'Beta2': os.path.join(LOCAL_MODEL_ROOT, 'DSL-LLaDA-Beta2'),
+    'Highpass': os.path.join(LOCAL_MODEL_ROOT, 'DSL-LLaDA-Highpass'),
+}
+
+
+def resolve_model_path(model_name):
+    local_path = LOCAL_MODELS[model_name]
+    return local_path if os.path.isdir(local_path) else HF_MODELS[model_name]
+
+
+def resolve_tokenizer_path():
+    return LOCAL_TOKENIZER_PATH if os.path.isdir(LOCAL_TOKENIZER_PATH) else 'GSAI-ML/LLaDA-8B-Instruct'
 
 
 def load_model(model_name, device='cuda:0'):
-    """Load model + DSL weights from HuggingFace."""
-    ckpt = HF_MODELS[model_name]
-    tokenizer = AutoTokenizer.from_pretrained('GSAI-ML/LLaDA-8B-Instruct', trust_remote_code=True)
-    model = AutoModelForCausalLM.from_pretrained(ckpt, trust_remote_code=True, torch_dtype=torch.bfloat16).to(device).eval()
+    """Load model + DSL weights from a local mirror when available, else HuggingFace."""
+    ckpt = resolve_model_path(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(resolve_tokenizer_path(), trust_remote_code=True)
+    model = AutoModelForCausalLM.from_pretrained(ckpt, trust_remote_code=True, dtype=torch.bfloat16).to(device).eval()
 
     # Load DSL weights (noise_embed, converter)
     ne, lb, bw, bb, bv, rw, rb = None, None, None, None, 2.5, None, None
-    from huggingface_hub import hf_hub_download
     import json
-    index = json.load(open(hf_hub_download(ckpt, 'model.safetensors.index.json')))
-    # Find which shard has noise_embed
-    for key, shard in index['weight_map'].items():
-        if key == 'noise_embed.weight':
-            path = hf_hub_download(ckpt, shard)
-            st = load_file(path, device=device)
+    if os.path.isdir(ckpt):
+        index_path = os.path.join(ckpt, 'model.safetensors.index.json')
+        with open(index_path) as f:
+            index = json.load(f)
+        shard = index['weight_map'].get('noise_embed.weight')
+        if shard is not None:
+            st = load_file(os.path.join(ckpt, shard), device=device)
             ne = st.get('noise_embed.weight', None)
             if ne is not None:
                 ne = ne.float()
@@ -47,16 +65,42 @@ def load_model(model_name, device='cuda:0'):
                 rb = st.get('converter.residual_proj.bias')
                 if rw is not None: rw = rw.float()
                 if rb is not None: rb = rb.float()
-            break
+    else:
+        from huggingface_hub import hf_hub_download
+        index = json.load(open(hf_hub_download(ckpt, 'model.safetensors.index.json')))
+        # Find which shard has noise_embed
+        for key, shard in index['weight_map'].items():
+            if key == 'noise_embed.weight':
+                path = hf_hub_download(ckpt, shard)
+                st = load_file(path, device=device)
+                ne = st.get('noise_embed.weight', None)
+                if ne is not None:
+                    ne = ne.float()
+                    lb = st['converter.logit_bias'].float()
+                    bw = st['converter.backbone_embedding.weight'].float()
+                    bb = st['converter.backbone_embedding.bias'].float()
+                    bv = st['converter.beta'].item()
+                    rw = st.get('converter.residual_proj.weight')
+                    rb = st.get('converter.residual_proj.bias')
+                    if rw is not None: rw = rw.float()
+                    if rb is not None: rb = rb.float()
+                break
 
     K = torch.cat([ne, torch.zeros(1, ne.shape[1], device=device)], dim=0) if ne is not None else None
     return model, tokenizer, dict(ne=ne, lb=lb, bw=bw, bb=bb, bv=bv, rw=rw, rb=rb, K=K)
 
 
+@lru_cache(maxsize=None)
+def _is_digit_token(tokenizer, token_id):
+    text = tokenizer.decode([int(token_id)], skip_special_tokens=True).strip()
+    return text.isdigit()
+
+
 # ═══════════════════════════════════════
 # Mode 1: Standard Remasking
 # ═══════════════════════════════════════
-def standard_remasking(model, tokenizer, prompt, gen_length=256, steps=64, device='cuda:0', seed=42):
+def standard_remasking(model, tokenizer, prompt, gen_length=256, steps=64, device='cuda:0', seed=42,
+                       digit_delay=False, sampling=False, temperature=1.0):
     """Standard confidence-based remasking. Best for reasoning tasks."""
     msgs = [{'role': 'user', 'content': prompt}]
     formatted = tokenizer.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
@@ -70,13 +114,25 @@ def standard_remasking(model, tokenizer, prompt, gen_length=256, steps=64, devic
     for i in range(rem): nt[i] += 1
 
     torch.manual_seed(seed)
+    delay_until = max(1, int(steps * 0.75))
     for s in range(steps):
         mi = (x == MASK_ID)
         logits = model(x).logits
-        x0 = logits.argmax(dim=-1)
-        p = F.softmax(logits, dim=-1)
+        scaled_logits = logits / max(float(temperature), 1e-5)
+        p = F.softmax(scaled_logits, dim=-1)
+        if sampling:
+            x0 = torch.multinomial(p.view(-1, p.shape[-1]), 1).view(p.shape[:-1])
+        else:
+            x0 = scaled_logits.argmax(dim=-1)
         x0_p = torch.gather(p, -1, x0.unsqueeze(-1)).squeeze(-1)
         x0_p[~mi] = -float('inf')
+        if digit_delay and s < delay_until:
+            digit_mask = torch.zeros_like(x0_p, dtype=torch.bool)
+            masked_positions = torch.nonzero(mi, as_tuple=False)
+            for batch_idx, pos_idx in masked_positions.tolist():
+                if _is_digit_token(tokenizer, int(x0[batch_idx, pos_idx])):
+                    digit_mask[batch_idx, pos_idx] = True
+            x0_p[digit_mask] *= 0.5
         _, idx = x0_p.sort(dim=-1, descending=True)
         x[0, idx[0, :nt[s]]] = x0[0, idx[0, :nt[s]]]
 
@@ -134,10 +190,9 @@ def sde_generate(model, tokenizer, dsl, prompt, gen_length=128, steps=16,
         with torch.no_grad():
             logits = model(input_ids=dummy, inputs_embeds=embeds).logits[:, pl:, :].float()
         probs_bb = F.softmax(logits, dim=-1)
-        sp, si = probs_bb.sort(dim=-1, descending=True)
-        cm = sp.cumsum(dim=-1); mask = cm - sp > 0.9; sp[mask] = 0; sp = sp / sp.sum(dim=-1, keepdim=True)
-        filt = torch.zeros_like(probs_bb); filt.scatter_(-1, si, sp)
-        xh = filt[:, :, :ne.shape[0]] @ ne
+        top_vals, top_idx = probs_bb.topk(min(SDE_TOP_K, probs_bb.shape[-1]), dim=-1)
+        top_vals = top_vals / top_vals.sum(dim=-1, keepdim=True)
+        xh = (top_vals.unsqueeze(-1) * ne[top_idx.clamp_max(ne.shape[0] - 1)]).sum(dim=-2)
         return xh
 
     ns = noise_scale
@@ -146,13 +201,13 @@ def sde_generate(model, tokenizer, dsl, prompt, gen_length=128, steps=16,
         s, s_next = snrs[i], snrs[i + 1]
         ds = s_next - s
         dW = torch.sqrt(ds.abs()) * torch.randn_like(y)
-        # Predictor
         xh = get_xhat(y, s)
-        f = (xh - y) / s; g = ns / s
+        f = (xh - y) / s
+        g = ns / s
         y_e = y + f * ds + g * dW
-        # Corrector (Heun)
         xh_e = get_xhat(y_e, s_next)
-        f_e = (xh_e - y_e) / s_next; g_e = ns / s_next
+        f_e = (xh_e - y_e) / s_next
+        g_e = ns / s_next
         y = y + 0.5 * (f + f_e) * ds + 0.5 * (g + g_e) * dW
 
     # Final decode via backbone
@@ -209,6 +264,12 @@ def main():
     parser.add_argument('--steps', type=int, default=16)
     parser.add_argument('--device', default='cuda:0')
     parser.add_argument('--seed', type=int, default=42)
+    parser.add_argument('--digit_delay', action='store_true',
+                        help='Delay digit token unmasking during the first 75% of standard remasking steps.')
+    parser.add_argument('--sampling', action='store_true',
+                        help='Use sampling instead of greedy argmax in standard remasking.')
+    parser.add_argument('--temperature', type=float, default=1.0,
+                        help='Sampling/confidence temperature for standard remasking.')
     args = parser.parse_args()
 
     print(f'Loading {args.model}...')
@@ -216,7 +277,10 @@ def main():
     print(f'Loaded. Mode: {args.mode}')
 
     if args.mode == 'standard':
-        text = standard_remasking(model, tokenizer, args.prompt, args.gen_length, args.steps, args.device, args.seed)
+        text = standard_remasking(
+            model, tokenizer, args.prompt, args.gen_length, args.steps, args.device, args.seed,
+            digit_delay=args.digit_delay, sampling=args.sampling, temperature=args.temperature,
+        )
         print(f'\n{text}')
 
     elif args.mode == 'sde':

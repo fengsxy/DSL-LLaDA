@@ -1,0 +1,3 @@
+.gradio/
+__pycache__/
+*.pyc
