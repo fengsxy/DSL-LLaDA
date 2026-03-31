@@ -19,7 +19,7 @@ SDE_TOP_K = 512
 DEFAULT_DEVICE = 'cuda:0'
 MODEL_ROOT = os.environ.get('DSL_LLADA_MODEL_ROOT', '/data2/ylong030/models/dsl-llada')
 TOKENIZER_PATH = os.path.join(MODEL_ROOT, 'LLaDA-8B-Instruct-tokenizer')
-ORIGINAL_MODEL_ID = os.environ.get('DSL_LLADA_ORIGINAL_MODEL', 'GSAI-ML/LLaDA-8B-Instruct')
+ORIGINAL_MODEL_ID = os.environ.get('DSL_LLADA_ORIGINAL_MODEL', os.path.join(MODEL_ROOT, 'DSL-LLaDA-Beta1'))
 LOAD_HIGHPASS = os.environ.get('DSL_LLADA_LOAD_HIGHPASS', '0') == '1'
 MODEL_PATHS = {
     'Beta1': os.path.join(MODEL_ROOT, 'DSL-LLaDA-Beta1'),
@@ -103,14 +103,24 @@ def _is_digit_token(token_id):
     text = tokenizer.decode([int(token_id)], skip_special_tokens=True).strip()
     return text.isdigit()
 
-print("Loading models...")
+print("Loading models...", flush=True)
 model_devices = get_model_devices()
+print(f"  Devices: {model_devices}", flush=True)
+print("  Loading Beta1...", flush=True)
 load_model('Beta1', resolve_model_path('Beta1', 'checkpoints/beta1_d100_1k/checkpoint-1000'), model_devices[0], use_residual=False)
+print("  Beta1 loaded.", flush=True)
+print("  Loading Beta2...", flush=True)
 load_model('Beta2', resolve_model_path('Beta2', 'checkpoints/pertoken_b2_d100_1k/checkpoint-1000'), model_devices[min(1, len(model_devices) - 1)], use_residual=False)
+print("  Beta2 loaded.", flush=True)
 if LOAD_HIGHPASS:
+    print("  Loading Highpass...", flush=True)
     load_model('Highpass', resolve_model_path('Highpass', 'checkpoints/pertoken_b2_highpass_1k/checkpoint-1000'), model_devices[min(2, len(model_devices) - 1)], use_residual=True)
-load_standard_model(model_devices[min(3, len(model_devices) - 1)])
-print("Models loaded!")
+    print("  Highpass loaded.", flush=True)
+# Reuse Beta1's backbone for standard remasking (same LLaDA weights, avoids extra .to() call)
+beta1 = MODELS['Beta1']
+STANDARD_MODEL = dict(model=beta1['model'], device=beta1['device'])
+print("  Standard model: reusing Beta1 backbone.", flush=True)
+print("Models loaded!", flush=True)
 
 
 def sde_heun_stream(prompt, model_name, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive):
@@ -351,10 +361,10 @@ with gr.Blocks(title="DSL-LLaDA SDE Demo") as demo:
         with gr.Column(scale=1):
             preset_case = gr.Dropdown(
                 choices=list(PRESET_CASES.keys()),
-                value="7. Creative Story",
+                value="6. Trip Plan",
                 label="Preset Cases"
             )
-            prompt = gr.Textbox(label="Prompt", value=PRESET_CASES["7. Creative Story"],
+            prompt = gr.Textbox(label="Prompt", value=PRESET_CASES["6. Trip Plan"],
                                 lines=3)
             model_choice = gr.Dropdown(
                 choices=list(MODELS.keys()),
@@ -376,7 +386,7 @@ with gr.Blocks(title="DSL-LLaDA SDE Demo") as demo:
                 use_digit_delay = gr.Checkbox(value=False, label="Digit Delay Trick")
                 use_std_sampling = gr.Checkbox(value=False, label="Standard Sampling")
             with gr.Row():
-                std_temperature = gr.Slider(0.1, 2.0, value=1.0, step=0.1, label="Standard Temperature")
+                std_temperature = gr.Slider(0.1, 2.0, value=0.1, step=0.1, label="Standard Temperature")
             generate_btn = gr.Button("Generate Both", variant="primary")
 
     with gr.Row():
