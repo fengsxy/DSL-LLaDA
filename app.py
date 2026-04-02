@@ -123,10 +123,12 @@ print("  Standard model: reusing Beta1 backbone.", flush=True)
 print("Models loaded!", flush=True)
 
 
-def sde_heun_stream(prompt, model_name, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive):
+def sde_heun_stream(prompt, model_name, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive, beta_infer=None):
     """Heun SDE integrator with streaming."""
     m = MODELS[model_name]
     model, ne, lb, bw, bb, bv, rw, rb, K = m['model'], m['ne'], m['lb'], m['bw'], m['bb'], m['bv'], m['rw'], m['rb'], m['K']
+    if beta_infer is not None:
+        bv = float(beta_infer)
     use_res = m['use_res']
     model_device = m['device']
 
@@ -293,7 +295,7 @@ def std_remasking_stream(prompt, steps, gen_length, seed, digit_delay, sampling,
     yield f"**FINAL** | Masked: 0/{GEN}\n\n" + final_text
 
 
-def generate_both(prompt, model_name, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive,
+def generate_both(prompt, model_name, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive, beta_infer,
                   use_digit_delay, use_std_sampling, std_temperature):
     """Run SDE and Standard in parallel and stream both panels independently."""
     std_steps = steps * 4
@@ -311,7 +313,7 @@ def generate_both(prompt, model_name, steps, gen_length, noise_scale, snr_max, s
 
     sde_thread = threading.Thread(
         target=pump,
-        args=(sde_heun_stream(prompt, model_name, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive), sde_queue),
+        args=(sde_heun_stream(prompt, model_name, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive, beta_infer), sde_queue),
         daemon=True,
     )
     std_thread = threading.Thread(
@@ -372,11 +374,13 @@ with gr.Blocks(title="DSL-LLaDA SDE Demo") as demo:
                 label="Model (SDE)"
             )
             with gr.Row():
-                steps = gr.Slider(4, 64, value=16, step=4, label="Steps")
+                steps = gr.Slider(4, 64, value=32, step=4, label="Steps")
                 gen_length = gr.Slider(64, 512, value=256, step=64, label="Gen Length")
             with gr.Row():
-                noise_scale = gr.Slider(0.0, 1.0, value=0.3, step=0.05, label="Noise Scale")
+                noise_scale = gr.Slider(0.0, 1.0, value=0.05, step=0.05, label="Noise Scale")
                 snr_max = gr.Slider(10, 200, value=80, step=10, label="SNR Max")
+            with gr.Row():
+                beta_infer = gr.Slider(0.5, 10.0, value=3.0, step=0.5, label="β_infer (SDE)")
             with gr.Row():
                 seed = gr.Number(value=42, label="Seed")
             with gr.Row():
@@ -399,7 +403,7 @@ with gr.Blocks(title="DSL-LLaDA SDE Demo") as demo:
 
     generate_btn.click(
         fn=generate_both,
-        inputs=[prompt, model_choice, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive, use_digit_delay, use_std_sampling, std_temperature],
+        inputs=[prompt, model_choice, steps, gen_length, noise_scale, snr_max, seed, use_norm_init, use_sensitive, beta_infer, use_digit_delay, use_std_sampling, std_temperature],
         outputs=[sde_output, std_output],
     )
     preset_case.change(
@@ -414,8 +418,9 @@ with gr.Blocks(title="DSL-LLaDA SDE Demo") as demo:
     - **Step matching**: Standard remasking runs at `4 x` the displayed step count, so `SDE 16` is compared against `Standard 64`
     - **Norm Init**: Start y on unit sphere (skip norm convergence phase)
     - **Sensitive Schedule**: 90% steps in SNR 7-74 (converter's discriminative zone)
-    - **Noise Scale**: 0.3 = default (more exploration), 0.0 = ODE (deterministic)
-    - **SNR Max**: 50 = default. Higher = more certain final decode
+    - **β_infer**: 3.0 = default. Softmax sharpness for converter during inference
+    - **Noise Scale**: 0.05 = default (subtle stochasticity), 0.0 = ODE (deterministic)
+    - **SNR Max**: 80 = default. Higher = more certain final decode
     - **Digit Delay Trick**: for Standard only, halves digit-token confidence during the first 75% of steps
     - **Standard Temperature**: affects the right panel only; it matters when `Standard Sampling` is enabled
 
