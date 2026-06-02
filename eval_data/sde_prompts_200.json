@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 0,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining photosynthesis."
+  },
+  {
+    "id": 1,
+    "category": "expository",
+    "prompt": "Describe the solar system in simple terms."
+  },
+  {
+    "id": 2,
+    "category": "expository",
+    "prompt": "Explain the concept of machine learning."
+  },
+  {
+    "id": 3,
+    "category": "expository",
+    "prompt": "Provide a brief overview of climate change."
+  },
+  {
+    "id": 4,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining democracy."
+  },
+  {
+    "id": 5,
+    "category": "expository",
+    "prompt": "Describe quantum mechanics in simple terms."
+  },
+  {
+    "id": 6,
+    "category": "expository",
+    "prompt": "Explain the concept of the water cycle."
+  },
+  {
+    "id": 7,
+    "category": "expository",
+    "prompt": "Provide a brief overview of evolution."
+  },
+  {
+    "id": 8,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining the internet."
+  },
+  {
+    "id": 9,
+    "category": "expository",
+    "prompt": "Describe gravity in simple terms."
+  },
+  {
+    "id": 10,
+    "category": "expository",
+    "prompt": "Explain the concept of biodiversity."
+  },
+  {
+    "id": 11,
+    "category": "expository",
+    "prompt": "Provide a brief overview of the Renaissance."
+  },
+  {
+    "id": 12,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining artificial intelligence."
+  },
+  {
+    "id": 13,
+    "category": "expository",
+    "prompt": "Describe plate tectonics in simple terms."
+  },
+  {
+    "id": 14,
+    "category": "expository",
+    "prompt": "Explain the concept of the human immune system."
+  },
+  {
+    "id": 15,
+    "category": "expository",
+    "prompt": "Provide a brief overview of supply and demand."
+  },
+  {
+    "id": 16,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining the French Revolution."
+  },
+  {
+    "id": 17,
+    "category": "expository",
+    "prompt": "Describe DNA replication in simple terms."
+  },
+  {
+    "id": 18,
+    "category": "expository",
+    "prompt": "Explain the concept of blockchain technology."
+  },
+  {
+    "id": 19,
+    "category": "expository",
+    "prompt": "Provide a brief overview of the greenhouse effect."
+  },
+  {
+    "id": 20,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining neural networks."
+  },
+  {
+    "id": 21,
+    "category": "expository",
+    "prompt": "Describe the Industrial Revolution in simple terms."
+  },
+  {
+    "id": 22,
+    "category": "expository",
+    "prompt": "Explain the concept of ocean currents."
+  },
+  {
+    "id": 23,
+    "category": "expository",
+    "prompt": "Provide a brief overview of antibiotics."
+  },
+  {
+    "id": 24,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining renewable energy."
+  },
+  {
+    "id": 25,
+    "category": "expository",
+    "prompt": "Describe game theory in simple terms."
+  },
+  {
+    "id": 26,
+    "category": "expository",
+    "prompt": "Explain the concept of the scientific method."
+  },
+  {
+    "id": 27,
+    "category": "expository",
+    "prompt": "Provide a brief overview of globalization."
+  },
+  {
+    "id": 28,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining the periodic table."
+  },
+  {
+    "id": 29,
+    "category": "expository",
+    "prompt": "Describe black holes in simple terms."
+  },
+  {
+    "id": 30,
+    "category": "expository",
+    "prompt": "Explain the concept of cryptocurrency."
+  },
+  {
+    "id": 31,
+    "category": "expository",
+    "prompt": "Provide a brief overview of natural selection."
+  },
+  {
+    "id": 32,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining the Cold War."
+  },
+  {
+    "id": 33,
+    "category": "expository",
+    "prompt": "Describe protein synthesis in simple terms."
+  },
+  {
+    "id": 34,
+    "category": "expository",
+    "prompt": "Explain the concept of relativity."
+  },
+  {
+    "id": 35,
+    "category": "expository",
+    "prompt": "Provide a brief overview of urbanization."
+  },
+  {
+    "id": 36,
+    "category": "expository",
+    "prompt": "Write a short paragraph explaining the water treatment process."
+  },
+  {
+    "id": 37,
+    "category": "expository",
+    "prompt": "Describe electric vehicles in simple terms."
+  },
+  {
+    "id": 38,
+    "category": "expository",
+    "prompt": "Explain the concept of the Big Bang theory."
+  },
+  {
+    "id": 39,
+    "category": "expository",
+    "prompt": "Provide a brief overview of inflation in economics."
+  },
+  {
+    "id": 40,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The old lighthouse had been dark for thirty years when\""
+  },
+  {
+    "id": 41,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"She found the letter tucked between the pages of a book she had never read\""
+  },
+  {
+    "id": 42,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The last train left the station at midnight\""
+  },
+  {
+    "id": 43,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"In a city where it never stopped raining\""
+  },
+  {
+    "id": 44,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"The robot opened its eyes for the first time\""
+  },
+  {
+    "id": 45,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"Nobody remembered when the forest first began to sing\""
+  },
+  {
+    "id": 46,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The map showed a country that did not exist\""
+  },
+  {
+    "id": 47,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"He woke up speaking a language he had never learned\""
+  },
+  {
+    "id": 48,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The clock on the wall began to run backwards\""
+  },
+  {
+    "id": 49,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"Deep beneath the ocean, something was waking up\""
+  },
+  {
+    "id": 50,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"The library was infinite, or so it seemed\""
+  },
+  {
+    "id": 51,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"She could taste colors since the accident\""
+  },
+  {
+    "id": 52,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The door appeared in the wall overnight\""
+  },
+  {
+    "id": 53,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"They found the message carved into the oldest tree\""
+  },
+  {
+    "id": 54,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The stars went out one by one\""
+  },
+  {
+    "id": 55,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The old lighthouse had been dark for thirty years when\""
+  },
+  {
+    "id": 56,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"She found the letter tucked between the pages of a book she had never read\""
+  },
+  {
+    "id": 57,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The last train left the station at midnight\""
+  },
+  {
+    "id": 58,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"In a city where it never stopped raining\""
+  },
+  {
+    "id": 59,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"The robot opened its eyes for the first time\""
+  },
+  {
+    "id": 60,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"Nobody remembered when the forest first began to sing\""
+  },
+  {
+    "id": 61,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The map showed a country that did not exist\""
+  },
+  {
+    "id": 62,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"He woke up speaking a language he had never learned\""
+  },
+  {
+    "id": 63,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The clock on the wall began to run backwards\""
+  },
+  {
+    "id": 64,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"Deep beneath the ocean, something was waking up\""
+  },
+  {
+    "id": 65,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"The library was infinite, or so it seemed\""
+  },
+  {
+    "id": 66,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"She could taste colors since the accident\""
+  },
+  {
+    "id": 67,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The door appeared in the wall overnight\""
+  },
+  {
+    "id": 68,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"They found the message carved into the oldest tree\""
+  },
+  {
+    "id": 69,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The stars went out one by one\""
+  },
+  {
+    "id": 70,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The old lighthouse had been dark for thirty years when\""
+  },
+  {
+    "id": 71,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"She found the letter tucked between the pages of a book she had never read\""
+  },
+  {
+    "id": 72,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The last train left the station at midnight\""
+  },
+  {
+    "id": 73,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"In a city where it never stopped raining\""
+  },
+  {
+    "id": 74,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"The robot opened its eyes for the first time\""
+  },
+  {
+    "id": 75,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"Nobody remembered when the forest first began to sing\""
+  },
+  {
+    "id": 76,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"The map showed a country that did not exist\""
+  },
+  {
+    "id": 77,
+    "category": "creative",
+    "prompt": "Continue this narrative: \"He woke up speaking a language he had never learned\""
+  },
+  {
+    "id": 78,
+    "category": "creative",
+    "prompt": "Write a creative paragraph starting with: \"The clock on the wall began to run backwards\""
+  },
+  {
+    "id": 79,
+    "category": "creative",
+    "prompt": "Write a short story that begins with: \"Deep beneath the ocean, something was waking up\""
+  },
+  {
+    "id": 80,
+    "category": "qa",
+    "prompt": "What is photosynthesis and why is it important?"
+  },
+  {
+    "id": 81,
+    "category": "qa",
+    "prompt": "How does the solar system work?"
+  },
+  {
+    "id": 82,
+    "category": "qa",
+    "prompt": "What are the main aspects of machine learning?"
+  },
+  {
+    "id": 83,
+    "category": "qa",
+    "prompt": "Describe the significance of climate change."
+  },
+  {
+    "id": 84,
+    "category": "qa",
+    "prompt": "What is democracy and why is it important?"
+  },
+  {
+    "id": 85,
+    "category": "qa",
+    "prompt": "How does quantum mechanics work?"
+  },
+  {
+    "id": 86,
+    "category": "qa",
+    "prompt": "What are the main aspects of the water cycle?"
+  },
+  {
+    "id": 87,
+    "category": "qa",
+    "prompt": "Describe the significance of evolution."
+  },
+  {
+    "id": 88,
+    "category": "qa",
+    "prompt": "What is the internet and why is it important?"
+  },
+  {
+    "id": 89,
+    "category": "qa",
+    "prompt": "How does gravity work?"
+  },
+  {
+    "id": 90,
+    "category": "qa",
+    "prompt": "What are the main aspects of biodiversity?"
+  },
+  {
+    "id": 91,
+    "category": "qa",
+    "prompt": "Describe the significance of the Renaissance."
+  },
+  {
+    "id": 92,
+    "category": "qa",
+    "prompt": "What is artificial intelligence and why is it important?"
+  },
+  {
+    "id": 93,
+    "category": "qa",
+    "prompt": "How does plate tectonics work?"
+  },
+  {
+    "id": 94,
+    "category": "qa",
+    "prompt": "What are the main aspects of the human immune system?"
+  },
+  {
+    "id": 95,
+    "category": "qa",
+    "prompt": "Describe the significance of supply and demand."
+  },
+  {
+    "id": 96,
+    "category": "qa",
+    "prompt": "What is the French Revolution and why is it important?"
+  },
+  {
+    "id": 97,
+    "category": "qa",
+    "prompt": "How does DNA replication work?"
+  },
+  {
+    "id": 98,
+    "category": "qa",
+    "prompt": "What are the main aspects of blockchain technology?"
+  },
+  {
+    "id": 99,
+    "category": "qa",
+    "prompt": "Describe the significance of the greenhouse effect."
+  },
+  {
+    "id": 100,
+    "category": "qa",
+    "prompt": "What is neural networks and why is it important?"
+  },
+  {
+    "id": 101,
+    "category": "qa",
+    "prompt": "How does the Industrial Revolution work?"
+  },
+  {
+    "id": 102,
+    "category": "qa",
+    "prompt": "What are the main aspects of ocean currents?"
+  },
+  {
+    "id": 103,
+    "category": "qa",
+    "prompt": "Describe the significance of antibiotics."
+  },
+  {
+    "id": 104,
+    "category": "qa",
+    "prompt": "What is renewable energy and why is it important?"
+  },
+  {
+    "id": 105,
+    "category": "qa",
+    "prompt": "How does game theory work?"
+  },
+  {
+    "id": 106,
+    "category": "qa",
+    "prompt": "What are the main aspects of the scientific method?"
+  },
+  {
+    "id": 107,
+    "category": "qa",
+    "prompt": "Describe the significance of globalization."
+  },
+  {
+    "id": 108,
+    "category": "qa",
+    "prompt": "What is the periodic table and why is it important?"
+  },
+  {
+    "id": 109,
+    "category": "qa",
+    "prompt": "How does black holes work?"
+  },
+  {
+    "id": 110,
+    "category": "qa",
+    "prompt": "What are the main aspects of cryptocurrency?"
+  },
+  {
+    "id": 111,
+    "category": "qa",
+    "prompt": "Describe the significance of natural selection."
+  },
+  {
+    "id": 112,
+    "category": "qa",
+    "prompt": "What is the Cold War and why is it important?"
+  },
+  {
+    "id": 113,
+    "category": "qa",
+    "prompt": "How does protein synthesis work?"
+  },
+  {
+    "id": 114,
+    "category": "qa",
+    "prompt": "What are the main aspects of relativity?"
+  },
+  {
+    "id": 115,
+    "category": "qa",
+    "prompt": "Describe the significance of urbanization."
+  },
+  {
+    "id": 116,
+    "category": "qa",
+    "prompt": "What is the water treatment process and why is it important?"
+  },
+  {
+    "id": 117,
+    "category": "qa",
+    "prompt": "How does electric vehicles work?"
+  },
+  {
+    "id": 118,
+    "category": "qa",
+    "prompt": "What are the main aspects of the Big Bang theory?"
+  },
+  {
+    "id": 119,
+    "category": "qa",
+    "prompt": "Describe the significance of inflation in economics."
+  },
+  {
+    "id": 120,
+    "category": "instruction",
+    "prompt": "Explain step by step how to make a simple paper airplane."
+  },
+  {
+    "id": 121,
+    "category": "instruction",
+    "prompt": "Write instructions for change a flat tire."
+  },
+  {
+    "id": 122,
+    "category": "instruction",
+    "prompt": "Describe the process of brew coffee without a machine."
+  },
+  {
+    "id": 123,
+    "category": "instruction",
+    "prompt": "How would you start a small garden?"
+  },
+  {
+    "id": 124,
+    "category": "instruction",
+    "prompt": "Explain step by step how to organize a bookshelf."
+  },
+  {
+    "id": 125,
+    "category": "instruction",
+    "prompt": "Write instructions for write a formal email."
+  },
+  {
+    "id": 126,
+    "category": "instruction",
+    "prompt": "Describe the process of set up a basic budget."
+  },
+  {
+    "id": 127,
+    "category": "instruction",
+    "prompt": "How would you cook rice perfectly?"
+  },
+  {
+    "id": 128,
+    "category": "instruction",
+    "prompt": "Explain step by step how to tie a necktie."
+  },
+  {
+    "id": 129,
+    "category": "instruction",
+    "prompt": "Write instructions for clean a laptop keyboard."
+  },
+  {
+    "id": 130,
+    "category": "instruction",
+    "prompt": "Describe the process of plan a road trip."
+  },
+  {
+    "id": 131,
+    "category": "instruction",
+    "prompt": "How would you prepare for a job interview?"
+  },
+  {
+    "id": 132,
+    "category": "instruction",
+    "prompt": "Explain step by step how to write a research abstract."
+  },
+  {
+    "id": 133,
+    "category": "instruction",
+    "prompt": "Write instructions for fix a leaky faucet."
+  },
+  {
+    "id": 134,
+    "category": "instruction",
+    "prompt": "Describe the process of pack efficiently for travel."
+  },
+  {
+    "id": 135,
+    "category": "instruction",
+    "prompt": "How would you make a simple paper airplane?"
+  },
+  {
+    "id": 136,
+    "category": "instruction",
+    "prompt": "Explain step by step how to change a flat tire."
+  },
+  {
+    "id": 137,
+    "category": "instruction",
+    "prompt": "Write instructions for brew coffee without a machine."
+  },
+  {
+    "id": 138,
+    "category": "instruction",
+    "prompt": "Describe the process of start a small garden."
+  },
+  {
+    "id": 139,
+    "category": "instruction",
+    "prompt": "How would you organize a bookshelf?"
+  },
+  {
+    "id": 140,
+    "category": "instruction",
+    "prompt": "Explain step by step how to write a formal email."
+  },
+  {
+    "id": 141,
+    "category": "instruction",
+    "prompt": "Write instructions for set up a basic budget."
+  },
+  {
+    "id": 142,
+    "category": "instruction",
+    "prompt": "Describe the process of cook rice perfectly."
+  },
+  {
+    "id": 143,
+    "category": "instruction",
+    "prompt": "How would you tie a necktie?"
+  },
+  {
+    "id": 144,
+    "category": "instruction",
+    "prompt": "Explain step by step how to clean a laptop keyboard."
+  },
+  {
+    "id": 145,
+    "category": "instruction",
+    "prompt": "Write instructions for plan a road trip."
+  },
+  {
+    "id": 146,
+    "category": "instruction",
+    "prompt": "Describe the process of prepare for a job interview."
+  },
+  {
+    "id": 147,
+    "category": "instruction",
+    "prompt": "How would you write a research abstract?"
+  },
+  {
+    "id": 148,
+    "category": "instruction",
+    "prompt": "Explain step by step how to fix a leaky faucet."
+  },
+  {
+    "id": 149,
+    "category": "instruction",
+    "prompt": "Write instructions for pack efficiently for travel."
+  },
+  {
+    "id": 150,
+    "category": "instruction",
+    "prompt": "Describe the process of make a simple paper airplane."
+  },
+  {
+    "id": 151,
+    "category": "instruction",
+    "prompt": "How would you change a flat tire?"
+  },
+  {
+    "id": 152,
+    "category": "instruction",
+    "prompt": "Explain step by step how to brew coffee without a machine."
+  },
+  {
+    "id": 153,
+    "category": "instruction",
+    "prompt": "Write instructions for start a small garden."
+  },
+  {
+    "id": 154,
+    "category": "instruction",
+    "prompt": "Describe the process of organize a bookshelf."
+  },
+  {
+    "id": 155,
+    "category": "instruction",
+    "prompt": "How would you write a formal email?"
+  },
+  {
+    "id": 156,
+    "category": "instruction",
+    "prompt": "Explain step by step how to set up a basic budget."
+  },
+  {
+    "id": 157,
+    "category": "instruction",
+    "prompt": "Write instructions for cook rice perfectly."
+  },
+  {
+    "id": 158,
+    "category": "instruction",
+    "prompt": "Describe the process of tie a necktie."
+  },
+  {
+    "id": 159,
+    "category": "instruction",
+    "prompt": "How would you clean a laptop keyboard?"
+  },
+  {
+    "id": 160,
+    "category": "summarization",
+    "prompt": "Summarize the key points about photosynthesis."
+  },
+  {
+    "id": 161,
+    "category": "summarization",
+    "prompt": "Give a concise summary of the solar system."
+  },
+  {
+    "id": 162,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about machine learning?"
+  },
+  {
+    "id": 163,
+    "category": "summarization",
+    "prompt": "Briefly describe climate change and its significance."
+  },
+  {
+    "id": 164,
+    "category": "summarization",
+    "prompt": "Summarize the key points about democracy."
+  },
+  {
+    "id": 165,
+    "category": "summarization",
+    "prompt": "Give a concise summary of quantum mechanics."
+  },
+  {
+    "id": 166,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about the water cycle?"
+  },
+  {
+    "id": 167,
+    "category": "summarization",
+    "prompt": "Briefly describe evolution and its significance."
+  },
+  {
+    "id": 168,
+    "category": "summarization",
+    "prompt": "Summarize the key points about the internet."
+  },
+  {
+    "id": 169,
+    "category": "summarization",
+    "prompt": "Give a concise summary of gravity."
+  },
+  {
+    "id": 170,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about biodiversity?"
+  },
+  {
+    "id": 171,
+    "category": "summarization",
+    "prompt": "Briefly describe the Renaissance and its significance."
+  },
+  {
+    "id": 172,
+    "category": "summarization",
+    "prompt": "Summarize the key points about artificial intelligence."
+  },
+  {
+    "id": 173,
+    "category": "summarization",
+    "prompt": "Give a concise summary of plate tectonics."
+  },
+  {
+    "id": 174,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about the human immune system?"
+  },
+  {
+    "id": 175,
+    "category": "summarization",
+    "prompt": "Briefly describe supply and demand and its significance."
+  },
+  {
+    "id": 176,
+    "category": "summarization",
+    "prompt": "Summarize the key points about the French Revolution."
+  },
+  {
+    "id": 177,
+    "category": "summarization",
+    "prompt": "Give a concise summary of DNA replication."
+  },
+  {
+    "id": 178,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about blockchain technology?"
+  },
+  {
+    "id": 179,
+    "category": "summarization",
+    "prompt": "Briefly describe the greenhouse effect and its significance."
+  },
+  {
+    "id": 180,
+    "category": "summarization",
+    "prompt": "Summarize the key points about neural networks."
+  },
+  {
+    "id": 181,
+    "category": "summarization",
+    "prompt": "Give a concise summary of the Industrial Revolution."
+  },
+  {
+    "id": 182,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about ocean currents?"
+  },
+  {
+    "id": 183,
+    "category": "summarization",
+    "prompt": "Briefly describe antibiotics and its significance."
+  },
+  {
+    "id": 184,
+    "category": "summarization",
+    "prompt": "Summarize the key points about renewable energy."
+  },
+  {
+    "id": 185,
+    "category": "summarization",
+    "prompt": "Give a concise summary of game theory."
+  },
+  {
+    "id": 186,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about the scientific method?"
+  },
+  {
+    "id": 187,
+    "category": "summarization",
+    "prompt": "Briefly describe globalization and its significance."
+  },
+  {
+    "id": 188,
+    "category": "summarization",
+    "prompt": "Summarize the key points about the periodic table."
+  },
+  {
+    "id": 189,
+    "category": "summarization",
+    "prompt": "Give a concise summary of black holes."
+  },
+  {
+    "id": 190,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about cryptocurrency?"
+  },
+  {
+    "id": 191,
+    "category": "summarization",
+    "prompt": "Briefly describe natural selection and its significance."
+  },
+  {
+    "id": 192,
+    "category": "summarization",
+    "prompt": "Summarize the key points about the Cold War."
+  },
+  {
+    "id": 193,
+    "category": "summarization",
+    "prompt": "Give a concise summary of protein synthesis."
+  },
+  {
+    "id": 194,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about relativity?"
+  },
+  {
+    "id": 195,
+    "category": "summarization",
+    "prompt": "Briefly describe urbanization and its significance."
+  },
+  {
+    "id": 196,
+    "category": "summarization",
+    "prompt": "Summarize the key points about the water treatment process."
+  },
+  {
+    "id": 197,
+    "category": "summarization",
+    "prompt": "Give a concise summary of electric vehicles."
+  },
+  {
+    "id": 198,
+    "category": "summarization",
+    "prompt": "What are the most important things to know about the Big Bang theory?"
+  },
+  {
+    "id": 199,
+    "category": "summarization",
+    "prompt": "Briefly describe inflation in economics and its significance."
+  }
+]

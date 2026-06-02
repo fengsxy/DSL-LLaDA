@@ -1,0 +1,6 @@
+name: lognormal
+
+# text8 from yunshu
+snr_max: 30.
+mu: 1.4
+sigma: 0.55

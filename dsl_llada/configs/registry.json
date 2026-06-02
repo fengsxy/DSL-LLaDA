@@ -1,0 +1,362 @@
+{
+  "original": {
+    "path": "GSAI-ML/LLaDA-8B-Instruct",
+    "type": "hf",
+    "description": "Baseline LLaDA-8B-Instruct (frozen)",
+    "dsl": false,
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "sm_b2": {
+    "path": "checkpoints/pertoken_b2_d100_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=2, random embed, per-token SNR, d=100, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 2.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 2.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "sde",
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "sem_b05_2k": {
+    "path": "checkpoints/semantic_b05_d100_10k/checkpoint-2000",
+    "type": "local",
+    "description": "DSL \u03b2=0.5, semantic embed (AE+contrastive), d=100, 2K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 0.5,
+      "noise_dim": 100,
+      "noise_init": "ae_contrastive"
+    },
+    "sde_config": {
+      "beta_infer": 1.0,
+      "noise_scale": 0.05,
+      "schedule": [
+        20,
+        80
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "sde",
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "sem_b05_3k": {
+    "path": "checkpoints/semantic_b05_d100_10k/checkpoint-3000",
+    "type": "local",
+    "description": "DSL \u03b2=0.5, semantic embed, d=100, 3K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 0.5,
+      "noise_dim": 100,
+      "noise_init": "ae_contrastive"
+    },
+    "sde_config": {
+      "beta_infer": 1.0,
+      "noise_scale": 0.05,
+      "schedule": [
+        20,
+        80
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "sde",
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "mdm_cpt": {
+    "path": "checkpoints/mdm_baseline_1k/checkpoint-1000",
+    "type": "local",
+    "description": "MDM continued pretraining, discrete masking, 1K steps",
+    "dsl": false,
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "xdlm": {
+    "path": "checkpoints/xdlm_baseline_1k/checkpoint-1000",
+    "type": "local",
+    "description": "XDLM mixed uniform+mask noise (k1=0.1), 1K steps",
+    "dsl": false,
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "frozen_embed": {
+    "path": "checkpoints/pertoken_b2_d100_frozen_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=2, frozen noise_embed, d=100, 1K steps (ablation)",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 2.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 2.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "sde",
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "b03": {
+    "path": "checkpoints/pertoken_b03_d100_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=0.3, random embed, per-token SNR, d=100, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 0.3,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 1.0,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "b1": {
+    "path": "checkpoints/pertoken_b1_d100_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=1, random embed, per-token SNR, d=100, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 1.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 2.0,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "b3": {
+    "path": "checkpoints/pertoken_b3_d100_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=3, random embed, per-token SNR, d=100, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 3.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 3.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "b4": {
+    "path": "checkpoints/pertoken_b4_d100_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=4, random embed, per-token SNR, d=100, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 4.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 4.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "b5": {
+    "path": "checkpoints/pertoken_b5_d100_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=5, random embed, per-token SNR, d=100, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 5.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 5.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "replace": {
+    "path": "checkpoints/pertoken_b2_replace_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=2, random embed, token replacement training, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 2.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 2.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "sem_b2": {
+    "path": "checkpoints/semantic_b2_d100_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=2, semantic embed (AE+contrastive), d=100, 1K steps (broken route)",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 2.0,
+      "noise_dim": 100,
+      "noise_init": "ae_contrastive"
+    },
+    "sde_config": {
+      "beta_infer": 2.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "sde",
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "highpass": {
+    "path": "checkpoints/pertoken_b2_highpass_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=2, highpass SNR filtering, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 2.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 2.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "residual": {
+    "path": "checkpoints/pertoken_b2_residual_1k/checkpoint-1000",
+    "type": "local",
+    "description": "DSL \u03b2=2, residual connection, 1K steps",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 2.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 2.5,
+      "noise_scale": 0.05,
+      "schedule": [
+        3,
+        100
+      ],
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  }
+}

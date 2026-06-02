@@ -1,0 +1,35 @@
+{
+  "original": {
+    "path": "GSAI-ML/LLaDA-8B-Instruct",
+    "type": "hf",
+    "description": "Baseline LLaDA-8B-Instruct",
+    "dsl": false,
+    "gen_methods": [
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  },
+  "hf_beta1": {
+    "path": "checkpoints/DSL-LLaDA-Beta1",
+    "type": "local",
+    "description": "DSL-LLaDA Beta1 from liddlefish/DSL-LLaDA-Beta1",
+    "dsl": true,
+    "dsl_config": {
+      "beta_init": 1.0,
+      "noise_dim": 100,
+      "noise_init": "random"
+    },
+    "sde_config": {
+      "beta_infer": 2.0,
+      "noise_scale": 0.005,
+      "schedule": "sensitive",
+      "steps": 32,
+      "solver": "heun"
+    },
+    "gen_methods": [
+      "sde",
+      "remask_free",
+      "remask_suppress_block32"
+    ]
+  }
+}

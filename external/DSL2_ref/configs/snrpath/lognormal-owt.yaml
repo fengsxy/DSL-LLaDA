@@ -1,0 +1,9 @@
+name: lognormal
+
+# in gv version, snr_max only affects sampling/metrics. Training has no max for snr. I don't think it matters
+# as sm convert will just converge to a backbone token more strongly
+# It could affect the DIT conditioning though. But that's better handled by clamping/scaling the conditioning
+snr_max: 100.
+
+mu: 2.69
+sigma: 1.41

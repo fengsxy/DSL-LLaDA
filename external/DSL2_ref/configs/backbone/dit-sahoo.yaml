@@ -1,0 +1,9 @@
+# Sahoo version of DIT w/o Yunshu's changes
+name: dit-sahoo
+dim_h: 768
+n_blocks: 12
+n_heads: 12
+cond_dim: 128
+dropout: 0.1
+dit_cond: false
+dit_attn_bias: false

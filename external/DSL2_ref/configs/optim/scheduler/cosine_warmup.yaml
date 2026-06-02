@@ -1,0 +1,4 @@
+name: cosine_warmup
+warmup_steps: 500
+t_max: 100000   # total steps target
+min_lr: 1.0e-6

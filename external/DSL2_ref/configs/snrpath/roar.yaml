@@ -1,0 +1,2 @@
+name: roar
+snr_max: 100.  # In ROAR, this controls the snr that is considered "unmasked"

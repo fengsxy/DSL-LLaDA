@@ -1,0 +1,8 @@
+name: dity
+dim_h: 1024
+n_blocks: 24
+n_heads: 16
+cond_dim: 128
+dropout: 0.1
+dit_cond: true
+dit_attn_bias: false

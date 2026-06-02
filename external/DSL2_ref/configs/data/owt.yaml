@@ -1,0 +1,12 @@
+train: openwebtext-train
+valid: openwebtext-valid
+tokenizer_name_or_path: gpt2
+cache_dir: ${oc.env:DSL2_CACHE_DIR}
+wrap: True
+streaming: False
+insert_train_eos: True
+insert_valid_eos: True
+
+block_size: 1024  # or sequence length, if you prefer
+
+dim_embed: 64  # embed in this dimension, learn to noise and denoise, localization dynamics

@@ -1,0 +1,602 @@
+[
+  {
+    "id": 0,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "photosynthesis",
+    "prompt": "Write a short paragraph about photosynthesis."
+  },
+  {
+    "id": 1,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "the solar system",
+    "prompt": "Write a short paragraph about the solar system."
+  },
+  {
+    "id": 2,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "machine learning",
+    "prompt": "Write a short paragraph about machine learning."
+  },
+  {
+    "id": 3,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "the water cycle",
+    "prompt": "Write a short paragraph about the water cycle."
+  },
+  {
+    "id": 4,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "ancient Rome",
+    "prompt": "Write a short paragraph about ancient Rome."
+  },
+  {
+    "id": 5,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "quantum mechanics",
+    "prompt": "Write a short paragraph about quantum mechanics."
+  },
+  {
+    "id": 6,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "climate change",
+    "prompt": "Write a short paragraph about climate change."
+  },
+  {
+    "id": 7,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "the human brain",
+    "prompt": "Write a short paragraph about the human brain."
+  },
+  {
+    "id": 8,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "the Industrial Revolution",
+    "prompt": "Write a short paragraph about the Industrial Revolution."
+  },
+  {
+    "id": 9,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "DNA and genetics",
+    "prompt": "Write a short paragraph about DNA and genetics."
+  },
+  {
+    "id": 10,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "black holes",
+    "prompt": "Write a short paragraph about black holes."
+  },
+  {
+    "id": 11,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "democracy",
+    "prompt": "Write a short paragraph about democracy."
+  },
+  {
+    "id": 12,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "the internet",
+    "prompt": "Write a short paragraph about the internet."
+  },
+  {
+    "id": 13,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "plate tectonics",
+    "prompt": "Write a short paragraph about plate tectonics."
+  },
+  {
+    "id": 14,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "the Renaissance",
+    "prompt": "Write a short paragraph about the Renaissance."
+  },
+  {
+    "id": 15,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "antibiotics",
+    "prompt": "Write a short paragraph about antibiotics."
+  },
+  {
+    "id": 16,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "artificial intelligence",
+    "prompt": "Write a short paragraph about artificial intelligence."
+  },
+  {
+    "id": 17,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "the periodic table",
+    "prompt": "Write a short paragraph about the periodic table."
+  },
+  {
+    "id": 18,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "evolution",
+    "prompt": "Write a short paragraph about evolution."
+  },
+  {
+    "id": 19,
+    "template": "Write a short paragraph about {topic}.",
+    "topic": "cryptocurrency",
+    "prompt": "Write a short paragraph about cryptocurrency."
+  },
+  {
+    "id": 20,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "photosynthesis",
+    "prompt": "Explain photosynthesis in simple terms."
+  },
+  {
+    "id": 21,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "the solar system",
+    "prompt": "Explain the solar system in simple terms."
+  },
+  {
+    "id": 22,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "machine learning",
+    "prompt": "Explain machine learning in simple terms."
+  },
+  {
+    "id": 23,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "the water cycle",
+    "prompt": "Explain the water cycle in simple terms."
+  },
+  {
+    "id": 24,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "ancient Rome",
+    "prompt": "Explain ancient Rome in simple terms."
+  },
+  {
+    "id": 25,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "quantum mechanics",
+    "prompt": "Explain quantum mechanics in simple terms."
+  },
+  {
+    "id": 26,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "climate change",
+    "prompt": "Explain climate change in simple terms."
+  },
+  {
+    "id": 27,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "the human brain",
+    "prompt": "Explain the human brain in simple terms."
+  },
+  {
+    "id": 28,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "the Industrial Revolution",
+    "prompt": "Explain the Industrial Revolution in simple terms."
+  },
+  {
+    "id": 29,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "DNA and genetics",
+    "prompt": "Explain DNA and genetics in simple terms."
+  },
+  {
+    "id": 30,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "black holes",
+    "prompt": "Explain black holes in simple terms."
+  },
+  {
+    "id": 31,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "democracy",
+    "prompt": "Explain democracy in simple terms."
+  },
+  {
+    "id": 32,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "the internet",
+    "prompt": "Explain the internet in simple terms."
+  },
+  {
+    "id": 33,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "plate tectonics",
+    "prompt": "Explain plate tectonics in simple terms."
+  },
+  {
+    "id": 34,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "the Renaissance",
+    "prompt": "Explain the Renaissance in simple terms."
+  },
+  {
+    "id": 35,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "antibiotics",
+    "prompt": "Explain antibiotics in simple terms."
+  },
+  {
+    "id": 36,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "artificial intelligence",
+    "prompt": "Explain artificial intelligence in simple terms."
+  },
+  {
+    "id": 37,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "the periodic table",
+    "prompt": "Explain the periodic table in simple terms."
+  },
+  {
+    "id": 38,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "evolution",
+    "prompt": "Explain evolution in simple terms."
+  },
+  {
+    "id": 39,
+    "template": "Explain {topic} in simple terms.",
+    "topic": "cryptocurrency",
+    "prompt": "Explain cryptocurrency in simple terms."
+  },
+  {
+    "id": 40,
+    "template": "Describe {topic} and its significance.",
+    "topic": "photosynthesis",
+    "prompt": "Describe photosynthesis and its significance."
+  },
+  {
+    "id": 41,
+    "template": "Describe {topic} and its significance.",
+    "topic": "the solar system",
+    "prompt": "Describe the solar system and its significance."
+  },
+  {
+    "id": 42,
+    "template": "Describe {topic} and its significance.",
+    "topic": "machine learning",
+    "prompt": "Describe machine learning and its significance."
+  },
+  {
+    "id": 43,
+    "template": "Describe {topic} and its significance.",
+    "topic": "the water cycle",
+    "prompt": "Describe the water cycle and its significance."
+  },
+  {
+    "id": 44,
+    "template": "Describe {topic} and its significance.",
+    "topic": "ancient Rome",
+    "prompt": "Describe ancient Rome and its significance."
+  },
+  {
+    "id": 45,
+    "template": "Describe {topic} and its significance.",
+    "topic": "quantum mechanics",
+    "prompt": "Describe quantum mechanics and its significance."
+  },
+  {
+    "id": 46,
+    "template": "Describe {topic} and its significance.",
+    "topic": "climate change",
+    "prompt": "Describe climate change and its significance."
+  },
+  {
+    "id": 47,
+    "template": "Describe {topic} and its significance.",
+    "topic": "the human brain",
+    "prompt": "Describe the human brain and its significance."
+  },
+  {
+    "id": 48,
+    "template": "Describe {topic} and its significance.",
+    "topic": "the Industrial Revolution",
+    "prompt": "Describe the Industrial Revolution and its significance."
+  },
+  {
+    "id": 49,
+    "template": "Describe {topic} and its significance.",
+    "topic": "DNA and genetics",
+    "prompt": "Describe DNA and genetics and its significance."
+  },
+  {
+    "id": 50,
+    "template": "Describe {topic} and its significance.",
+    "topic": "black holes",
+    "prompt": "Describe black holes and its significance."
+  },
+  {
+    "id": 51,
+    "template": "Describe {topic} and its significance.",
+    "topic": "democracy",
+    "prompt": "Describe democracy and its significance."
+  },
+  {
+    "id": 52,
+    "template": "Describe {topic} and its significance.",
+    "topic": "the internet",
+    "prompt": "Describe the internet and its significance."
+  },
+  {
+    "id": 53,
+    "template": "Describe {topic} and its significance.",
+    "topic": "plate tectonics",
+    "prompt": "Describe plate tectonics and its significance."
+  },
+  {
+    "id": 54,
+    "template": "Describe {topic} and its significance.",
+    "topic": "the Renaissance",
+    "prompt": "Describe the Renaissance and its significance."
+  },
+  {
+    "id": 55,
+    "template": "Describe {topic} and its significance.",
+    "topic": "antibiotics",
+    "prompt": "Describe antibiotics and its significance."
+  },
+  {
+    "id": 56,
+    "template": "Describe {topic} and its significance.",
+    "topic": "artificial intelligence",
+    "prompt": "Describe artificial intelligence and its significance."
+  },
+  {
+    "id": 57,
+    "template": "Describe {topic} and its significance.",
+    "topic": "the periodic table",
+    "prompt": "Describe the periodic table and its significance."
+  },
+  {
+    "id": 58,
+    "template": "Describe {topic} and its significance.",
+    "topic": "evolution",
+    "prompt": "Describe evolution and its significance."
+  },
+  {
+    "id": 59,
+    "template": "Describe {topic} and its significance.",
+    "topic": "cryptocurrency",
+    "prompt": "Describe cryptocurrency and its significance."
+  },
+  {
+    "id": 60,
+    "template": "What is {topic}?",
+    "topic": "photosynthesis",
+    "prompt": "What is photosynthesis?"
+  },
+  {
+    "id": 61,
+    "template": "What is {topic}?",
+    "topic": "the solar system",
+    "prompt": "What is the solar system?"
+  },
+  {
+    "id": 62,
+    "template": "What is {topic}?",
+    "topic": "machine learning",
+    "prompt": "What is machine learning?"
+  },
+  {
+    "id": 63,
+    "template": "What is {topic}?",
+    "topic": "the water cycle",
+    "prompt": "What is the water cycle?"
+  },
+  {
+    "id": 64,
+    "template": "What is {topic}?",
+    "topic": "ancient Rome",
+    "prompt": "What is ancient Rome?"
+  },
+  {
+    "id": 65,
+    "template": "What is {topic}?",
+    "topic": "quantum mechanics",
+    "prompt": "What is quantum mechanics?"
+  },
+  {
+    "id": 66,
+    "template": "What is {topic}?",
+    "topic": "climate change",
+    "prompt": "What is climate change?"
+  },
+  {
+    "id": 67,
+    "template": "What is {topic}?",
+    "topic": "the human brain",
+    "prompt": "What is the human brain?"
+  },
+  {
+    "id": 68,
+    "template": "What is {topic}?",
+    "topic": "the Industrial Revolution",
+    "prompt": "What is the Industrial Revolution?"
+  },
+  {
+    "id": 69,
+    "template": "What is {topic}?",
+    "topic": "DNA and genetics",
+    "prompt": "What is DNA and genetics?"
+  },
+  {
+    "id": 70,
+    "template": "What is {topic}?",
+    "topic": "black holes",
+    "prompt": "What is black holes?"
+  },
+  {
+    "id": 71,
+    "template": "What is {topic}?",
+    "topic": "democracy",
+    "prompt": "What is democracy?"
+  },
+  {
+    "id": 72,
+    "template": "What is {topic}?",
+    "topic": "the internet",
+    "prompt": "What is the internet?"
+  },
+  {
+    "id": 73,
+    "template": "What is {topic}?",
+    "topic": "plate tectonics",
+    "prompt": "What is plate tectonics?"
+  },
+  {
+    "id": 74,
+    "template": "What is {topic}?",
+    "topic": "the Renaissance",
+    "prompt": "What is the Renaissance?"
+  },
+  {
+    "id": 75,
+    "template": "What is {topic}?",
+    "topic": "antibiotics",
+    "prompt": "What is antibiotics?"
+  },
+  {
+    "id": 76,
+    "template": "What is {topic}?",
+    "topic": "artificial intelligence",
+    "prompt": "What is artificial intelligence?"
+  },
+  {
+    "id": 77,
+    "template": "What is {topic}?",
+    "topic": "the periodic table",
+    "prompt": "What is the periodic table?"
+  },
+  {
+    "id": 78,
+    "template": "What is {topic}?",
+    "topic": "evolution",
+    "prompt": "What is evolution?"
+  },
+  {
+    "id": 79,
+    "template": "What is {topic}?",
+    "topic": "cryptocurrency",
+    "prompt": "What is cryptocurrency?"
+  },
+  {
+    "id": 80,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "photosynthesis",
+    "prompt": "Summarize the key aspects of photosynthesis."
+  },
+  {
+    "id": 81,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "the solar system",
+    "prompt": "Summarize the key aspects of the solar system."
+  },
+  {
+    "id": 82,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "machine learning",
+    "prompt": "Summarize the key aspects of machine learning."
+  },
+  {
+    "id": 83,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "the water cycle",
+    "prompt": "Summarize the key aspects of the water cycle."
+  },
+  {
+    "id": 84,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "ancient Rome",
+    "prompt": "Summarize the key aspects of ancient Rome."
+  },
+  {
+    "id": 85,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "quantum mechanics",
+    "prompt": "Summarize the key aspects of quantum mechanics."
+  },
+  {
+    "id": 86,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "climate change",
+    "prompt": "Summarize the key aspects of climate change."
+  },
+  {
+    "id": 87,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "the human brain",
+    "prompt": "Summarize the key aspects of the human brain."
+  },
+  {
+    "id": 88,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "the Industrial Revolution",
+    "prompt": "Summarize the key aspects of the Industrial Revolution."
+  },
+  {
+    "id": 89,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "DNA and genetics",
+    "prompt": "Summarize the key aspects of DNA and genetics."
+  },
+  {
+    "id": 90,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "black holes",
+    "prompt": "Summarize the key aspects of black holes."
+  },
+  {
+    "id": 91,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "democracy",
+    "prompt": "Summarize the key aspects of democracy."
+  },
+  {
+    "id": 92,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "the internet",
+    "prompt": "Summarize the key aspects of the internet."
+  },
+  {
+    "id": 93,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "plate tectonics",
+    "prompt": "Summarize the key aspects of plate tectonics."
+  },
+  {
+    "id": 94,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "the Renaissance",
+    "prompt": "Summarize the key aspects of the Renaissance."
+  },
+  {
+    "id": 95,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "antibiotics",
+    "prompt": "Summarize the key aspects of antibiotics."
+  },
+  {
+    "id": 96,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "artificial intelligence",
+    "prompt": "Summarize the key aspects of artificial intelligence."
+  },
+  {
+    "id": 97,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "the periodic table",
+    "prompt": "Summarize the key aspects of the periodic table."
+  },
+  {
+    "id": 98,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "evolution",
+    "prompt": "Summarize the key aspects of evolution."
+  },
+  {
+    "id": 99,
+    "template": "Summarize the key aspects of {topic}.",
+    "topic": "cryptocurrency",
+    "prompt": "Summarize the key aspects of cryptocurrency."
+  }
+]
