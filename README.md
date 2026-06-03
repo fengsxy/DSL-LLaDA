@@ -3,6 +3,12 @@
 This directory contains the code and sampled data needed to reproduce the
 DSL-LLaDA experiments described in the EMNLP submission.
 
+## Demo
+
+Try the live demo:
+
+<http://138.23.28.165:7860>
+
 ## Layout
 
 - `dsl_llada/`: release-style DSL-LLaDA implementation used for training and

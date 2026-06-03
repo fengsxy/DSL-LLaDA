@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="DSL-LLaDA adapts LLaDA-8B-Instruct with Discrete Stochastic Localization for continuous denoising in masked diffusion language models."
+    >
+    <title>DSL-LLaDA: Scaling Continuous Denoising to 8B Masked Diffusion LMs</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #151716;
+        --muted: #5f6763;
+        --line: #d9ded9;
+        --paper: #fbfaf6;
+        --panel: #ffffff;
+        --night: #111413;
+        --night-soft: #1c2220;
+        --mint: #32d89a;
+        --mint-deep: #087552;
+        --blue: #356ec9;
+        --gold: #d49a2a;
+        --rose: #c45769;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        min-height: 64px;
+        padding: 0 32px;
+        border-bottom: 1px solid rgba(21, 23, 22, 0.12);
+        background: rgba(251, 250, 246, 0.92);
+        backdrop-filter: blur(12px);
+      }
+
+      .brand {
+        font-weight: 800;
+        font-size: 17px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .nav a {
+        text-decoration: none;
+      }
+
+      .hero {
+        min-height: calc(100vh - 64px);
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+        gap: 44px;
+        align-items: center;
+        max-width: 1220px;
+        margin: 0 auto;
+        padding: 54px 32px 44px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--mint-deep);
+        font-size: 13px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .pulse {
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: var(--mint);
+        box-shadow: 0 0 0 6px rgba(50, 216, 154, 0.18);
+      }
+
+      h1 {
+        max-width: 900px;
+        margin: 18px 0 20px;
+        font-size: 76px;
+        line-height: 0.98;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 690px;
+        margin: 0;
+        font-size: 19px;
+        color: #3f4642;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 17px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 800;
+        background: var(--panel);
+      }
+
+      .button.primary {
+        border-color: #22b981;
+        background: var(--mint);
+        color: #06150f;
+      }
+
+      .facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 680px;
+        margin-top: 34px;
+      }
+
+      .fact {
+        border-top: 2px solid var(--ink);
+        padding-top: 11px;
+      }
+
+      .fact strong {
+        display: block;
+        font-size: 24px;
+        line-height: 1.1;
+      }
+
+      .fact span {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .demo-panel {
+        min-height: 520px;
+        background: var(--night);
+        border: 1px solid #303834;
+        border-radius: 8px;
+        color: #f4f6ef;
+        padding: 24px;
+        box-shadow: 0 28px 70px rgba(11, 16, 14, 0.22);
+        overflow: hidden;
+      }
+
+      .panel-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+
+      .dots span {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: #46504b;
+      }
+
+      .panel-title {
+        color: #a9b6af;
+        font-size: 13px;
+      }
+
+      .trajectory {
+        display: grid;
+        gap: 14px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 90px minmax(0, 1fr);
+        gap: 14px;
+        align-items: center;
+      }
+
+      .step-label {
+        color: #a9b6af;
+        font-size: 13px;
+      }
+
+      .tokens {
+        display: grid;
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .token {
+        height: 34px;
+        border-radius: 5px;
+        background: #2d3531;
+        border: 1px solid #46504b;
+      }
+
+      .token.noise {
+        background:
+          linear-gradient(135deg, rgba(196, 87, 105, 0.92), rgba(53, 110, 201, 0.88)),
+          #252b29;
+      }
+
+      .token.mix {
+        background:
+          linear-gradient(135deg, rgba(212, 154, 42, 0.88), rgba(50, 216, 154, 0.72)),
+          #252b29;
+      }
+
+      .token.clean {
+        background: #34d399;
+        border-color: #72edbd;
+      }
+
+      .metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .metric {
+        background: var(--night-soft);
+        border: 1px solid #303834;
+        border-radius: 7px;
+        padding: 15px;
+      }
+
+      .metric strong {
+        display: block;
+        color: var(--mint);
+        font-size: 24px;
+      }
+
+      .metric span {
+        color: #cbd3ce;
+        font-size: 13px;
+      }
+
+      .prompt-box {
+        margin-top: 24px;
+        background: #0a0d0c;
+        border: 1px solid #303834;
+        border-radius: 7px;
+        padding: 16px;
+        color: #d7ddd9;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 13px;
+      }
+
+      main section {
+        border-top: 1px solid var(--line);
+      }
+
+      .section-inner {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 64px 32px;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(220px, 0.34fr) minmax(0, 0.66fr);
+        gap: 38px;
+        margin-bottom: 32px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 32px;
+        line-height: 1.1;
+        letter-spacing: 0;
+      }
+
+      .section-head p,
+      .abstract {
+        margin: 0;
+        color: #3f4642;
+        font-size: 18px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 22px;
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 19px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .resource {
+        min-height: 118px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+        text-decoration: none;
+      }
+
+      .resource span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .resource strong {
+        font-size: 18px;
+      }
+
+      pre {
+        overflow: auto;
+        margin: 0;
+        padding: 20px;
+        border-radius: 8px;
+        background: #151716;
+        color: #f4f6ef;
+        font-size: 14px;
+      }
+
+      footer {
+        padding: 28px 32px 44px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      @media (max-width: 920px) {
+        .topbar {
+          position: static;
+          padding: 0 20px;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .hero,
+        .section-head,
+        .grid,
+        .resource-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 42px 20px 32px;
+        }
+
+        h1 {
+          font-size: 44px;
+        }
+
+        .demo-panel {
+          min-height: auto;
+          padding: 18px;
+        }
+
+        .facts,
+        .metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .section-inner {
+          padding: 46px 20px;
+        }
+
+        .step {
+          grid-template-columns: 1fr;
+          gap: 7px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">DSL-LLaDA</div>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#method">Method</a>
+        <a href="#findings">Findings</a>
+        <a href="#resources">Resources</a>
+        <a href="#reproduce">Reproduce</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Live demo available</div>
+          <h1 id="title">DSL-LLaDA: Scaling Continuous Denoising to 8B Masked Diffusion LMs</h1>
+          <p class="lead">
+            DSL-LLaDA lightly adapts LLaDA-8B-Instruct with Discrete Stochastic
+            Localization so masked diffusion language models can denoise in
+            continuous embedding space before committing to final tokens.
+          </p>
+          <div class="actions" aria-label="Project links">
+            <a class="button primary" href="http://138.23.28.165:7860">Open Demo</a>
+            <a class="button" href="https://huggingface.co/liddlefish/DSL-LLaDA-Beta1">Download Model</a>
+            <a class="button" href="https://github.com/fengsxy/DSL-LLaDA">View Code</a>
+          </div>
+          <div class="facts" aria-label="Project highlights">
+            <div class="fact">
+              <strong>8B</strong>
+              <span>LLaDA-Instruct backbone</span>
+            </div>
+            <div class="fact">
+              <strong>1k</strong>
+              <span>DSL adaptation steps</span>
+            </div>
+            <div class="fact">
+              <strong>&le;16</strong>
+              <span>low-NFE evaluation regime</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="demo-panel" aria-label="Continuous denoising visualization">
+          <div class="panel-top">
+            <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+            <div class="panel-title">continuous response state</div>
+          </div>
+          <div class="trajectory">
+            <div class="step">
+              <div class="step-label">start</div>
+              <div class="tokens" aria-hidden="true">
+                <span class="token noise"></span><span class="token noise"></span>
+                <span class="token noise"></span><span class="token noise"></span>
+                <span class="token noise"></span><span class="token noise"></span>
+                <span class="token noise"></span><span class="token noise"></span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-label">SDE step</div>
+              <div class="tokens" aria-hidden="true">
+                <span class="token mix"></span><span class="token noise"></span>
+                <span class="token mix"></span><span class="token mix"></span>
+                <span class="token noise"></span><span class="token mix"></span>
+                <span class="token noise"></span><span class="token mix"></span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-label">denoise</div>
+              <div class="tokens" aria-hidden="true">
+                <span class="token clean"></span><span class="token mix"></span>
+                <span class="token clean"></span><span class="token clean"></span>
+                <span class="token mix"></span><span class="token clean"></span>
+                <span class="token mix"></span><span class="token clean"></span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-label">decode</div>
+              <div class="tokens" aria-hidden="true">
+                <span class="token clean"></span><span class="token clean"></span>
+                <span class="token clean"></span><span class="token clean"></span>
+                <span class="token clean"></span><span class="token clean"></span>
+                <span class="token clean"></span><span class="token clean"></span>
+              </div>
+            </div>
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <strong>SDE</strong>
+              <span>delayed hard token commitment</span>
+            </div>
+            <div class="metric">
+              <strong>DSL</strong>
+              <span>continuous noisy-token adaptation</span>
+            </div>
+          </div>
+          <div class="prompt-box">
+            demo: http://138.23.28.165:7860<br>
+            model: liddlefish/DSL-LLaDA-Beta1
+          </div>
+        </aside>
+      </section>
+
+      <section id="method">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>Method</h2>
+            <p>
+              Instead of training a continuous language diffusion model from
+              scratch, DSL-LLaDA converts a pretrained masked DLM into a
+              continuous denoiser with a short continuation run.
+            </p>
+          </div>
+          <div class="grid">
+            <article class="card">
+              <h3>Soft noisy token states</h3>
+              <p>
+                Binary clean-or-mask inputs are replaced with continuous
+                Gaussian-noised token embeddings that encode graded uncertainty.
+              </p>
+            </article>
+            <article class="card">
+              <h3>No architecture change</h3>
+              <p>
+                A softmax converter maps DSL states back into the LLaDA input
+                space, keeping the pretrained backbone intact.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Continuous SDE sampling</h3>
+              <p>
+                Response positions evolve jointly in embedding space and commit
+                to hard tokens only at the final decoding step.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="findings">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>Main findings</h2>
+            <p>
+              The paper studies low-step generation, summarization, and
+              noisy-state robustness against same-compute discrete controls.
+            </p>
+          </div>
+          <div class="grid">
+            <article class="card">
+              <h3>Better low-NFE behavior</h3>
+              <p>
+                Continuous inference reduces the premature-termination and
+                repetition tradeoff seen in iterative unmasking.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Strong summarization</h3>
+              <p>
+                At low forward-pass budgets, DSL-LLaDA-SDE improves zero-shot
+                summarization quality across the evaluated benchmarks.
+              </p>
+            </article>
+            <article class="card">
+              <h3>Selective correction</h3>
+              <p>
+                Continuous-noise exposure helps the model correct corrupted
+                tokens while preserving clean context tokens.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="resources">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>Resources</h2>
+            <p>
+              Use the hosted demo for a quick look, then download the model or
+              reproduce the experiments from the public code release.
+            </p>
+          </div>
+          <div class="resource-grid">
+            <a class="resource" href="http://138.23.28.165:7860">
+              <span>Interactive</span>
+              <strong>Live Demo</strong>
+            </a>
+            <a class="resource" href="https://huggingface.co/liddlefish/DSL-LLaDA-Beta1">
+              <span>Checkpoint</span>
+              <strong>Hugging Face Model</strong>
+            </a>
+            <a class="resource" href="https://github.com/fengsxy/DSL-LLaDA">
+              <span>Repository</span>
+              <strong>GitHub Code</strong>
+            </a>
+            <a class="resource" href="#reproduce">
+              <span>Commands</span>
+              <strong>Reproduce</strong>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="reproduce">
+        <div class="section-inner">
+          <div class="section-head">
+            <h2>Quick start</h2>
+            <p>
+              The repository keeps paper-only assets out of the release and
+              points model weights to Hugging Face.
+            </p>
+          </div>
+          <pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+mkdir -p checkpoints
+huggingface-cli download liddlefish/DSL-LLaDA-Beta1 \
+  --local-dir checkpoints/DSL-LLaDA-Beta1 \
+  --local-dir-use-symlinks False
+
+export DSL_LLADA_REGISTRY=dsl_llada/configs/registry_hf_beta1.template.json</code></pre>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      DSL-LLaDA project page for the EMNLP reproducibility release.
+    </footer>
+  </body>
+</html>
