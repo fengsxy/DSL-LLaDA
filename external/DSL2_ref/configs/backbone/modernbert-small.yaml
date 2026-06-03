@@ -1,6 +1,0 @@
-name: modernbert
-dim_h: 768
-n_blocks: 12
-n_heads: 12
-cond_dim: 128
-dropout: 0.1

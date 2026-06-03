@@ -1,6 +1,0 @@
-name: sgd
-lr: 0.1
-momentum: 0.9
-nesterov: false
-weight_decay: 0.0
-ema_decay: 0.999

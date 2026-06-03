@@ -1,8 +1,0 @@
-name: mixed
-
-# for roar
-snr_max: 100.0
-
-# for lognormal
-mu: 4.
-sigma: 1.5

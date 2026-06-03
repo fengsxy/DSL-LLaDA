@@ -14,18 +14,13 @@ Try the live demo:
 - `dsl_llada/`: release-style DSL-LLaDA implementation used for training and
   evaluation.
 - `eval_data/`: sampled evaluation data used by the paper scripts.
-- `external/`: reference and baseline code snapshots, including the DSL
-  localization reference code and LLaDA/XDLM baselines.
-- `workspace_extras/dsl_llada_active/`: active workspace scripts that are
-  useful for appendix and robustness experiments not fully mirrored in the
-  release layout.
-- `workspace_extras/scripts/`: paper-related launch scripts from the active
-  workspace.
 - `figures/`: plotting helpers.
+- `index.html`: paper homepage for GitHub Pages.
+- `tests/`: lightweight checks for the public release layout.
 
 Generated directories such as `checkpoints/`, `eval_results/`, `logs/`, and
-`wandb/` are intentionally not included. Paper-only assets, including the paper
-source and rendered paper figures, are kept out of this repository.
+`wandb/` are intentionally not included. Paper-only assets and internal
+workspace snapshots are kept out of this repository.
 
 ## Environment
 
@@ -72,7 +67,7 @@ Syntax and lightweight checks:
 
 ```bash
 python -m py_compile $(find dsl_llada -name '*.py' | sort)
-for f in dsl_llada/scripts/*.sh workspace_extras/scripts/*.sh; do bash -n "$f"; done
+for f in dsl_llada/scripts/*.sh; do bash -n "$f"; done
 python dsl_llada/eval/sanity_check.py
 ```
 

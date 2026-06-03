@@ -11,6 +11,8 @@ __pycache__/
 tmp/
 paper.tex
 paper_figures/
+external/
+workspace_extras/
 
 checkpoints/
 eval_results/
