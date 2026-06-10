@@ -1,7 +1,7 @@
 # DSL-LLaDA Reproducibility Package
 
 This directory contains the code and sampled data needed to reproduce the
-DSL-LLaDA experiments described in the EMNLP submission.
+DSL-LLaDA experiments described in the arxiv submission.
 
 ## Demo
 
